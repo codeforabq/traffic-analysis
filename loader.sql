@@ -1,4 +1,4 @@
-LOAD DATA LOCAL INFILE '~/Documents/bootcamp/university-heights-association/BernCo Traffic Accident Data 2010 to 2013.csv'
+LOAD DATA LOCAL INFILE 'BernCo Traffic Accident Data 2010 to 2013.csv'
 INTO TABLE uhaRecords
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'

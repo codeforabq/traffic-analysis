@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS `uha`.`uharecords`;
-CREATE TABLE `uharecords` (
+DROP TABLE IF EXISTS `uha`.`uhaRecords`;
+CREATE TABLE `uhaRecords` (
   `OBJECTID` int(11) DEFAULT NULL,
   `REPORT` int(11) DEFAULT NULL,
   `DATE` text,
