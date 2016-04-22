@@ -1,4 +1,6 @@
-LOAD DATA LOCAL INFILE 'BernCo Traffic Accident Data 2010 to 2013.csv'
+source uhaStructureCreation.sql;
+
+LOAD DATA LOCAL INFILE 'BernCo_Traffic_Accident_Data_2010_to_2013.csv'
 INTO TABLE uhaRecords
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
