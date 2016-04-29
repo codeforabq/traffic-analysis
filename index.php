@@ -21,9 +21,6 @@
         </style>
     </head>
     <body>
-
-        <?php require 'php/getCoordinates.php' ?>
-
         <div id="mapdiv"></div>
         <script>
             var map;
@@ -31,39 +28,56 @@
             var infoWindow;
             function map_initialize() {
                 map = new google.maps.Map(document.getElementById("mapdiv"), {
-                    center: new google.maps.LatLng(0, 0),
-                    zoom: 0,
+                    center: new google.maps.LatLng(35.104874, -106.627808),
+                    zoom: 10,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
 
-                var latlngbounds = new google.maps.LatLngBounds();
+//                var latlngbounds = new google.maps.LatLngBounds();
                 $.getJSON("php/locations.json", function(json1) {
                     $.each(json1, function(key, data) {
 
                         var latLng = new google.maps.LatLng(data.lat, data.lng);
+                        var iconImage = "";
+
+                        switch (data.year) {
+                            case "2010":
+                                iconImage = "img/red-dot.png";
+                                break;
+                            case "2011":
+                                iconImage = "img/blue-dot.png";
+                                break;
+                            case "2012":
+                                iconImage = "img/yellow-dot.png";
+                                break;
+                            case "2013":
+                                iconImage = "img/green-dot.png";
+                                break;
+                        }
 
                         // Create a marker and put it on the map
                         var marker = new google.maps.Marker({
+                            icon: iconImage,
                             position: latLng,
-                            title: data.title
+                            title: data.title + ' - Year: ' + data.year + ' - rowId: ' + data.objectid
                         });
 
-                        latlngbounds.extend(latLng);
+//                        latlngbounds.extend(latLng);
                         marker.setMap(map);
                     });
                 });
 
                 // Create a bounding box
-                map.fitBounds(latlngbounds);
-                box = new google.maps.Rectangle({
-                    bounds: latlngbounds,
-                    map: map,
-                    fillColor: "#000000",
-                    fillOpacity: 0.2,
-                    strokeWeight: 0
-                });
+//                map.fitBounds(latlngbounds);
+//                box = new google.maps.Rectangle({
+//                    bounds: latlngbounds,
+//                    map: map,
+//                    fillColor: "#000000",
+//                    fillOpacity: 0.2,
+//                    strokeWeight: 0
+//                });
 
-                box.addListener('mouseover', showAccidentData);
+//                box.addListener('mouseover', showAccidentData);
 
                 // Define an info window on the map.
                 infoWindow = new google.maps.InfoWindow();
