@@ -19,7 +19,7 @@ $accidentData = array();
 //$sql1 = "SELECT CONCAT(ASTREET, ' & ', BSTREET) AS title, GIS_LAT AS lat, GIS_LONG AS lng FROM uhaRecords WHERE (ASTREET LIKE 'Coal' OR BSTREET LIKE 'Coal') OR (ASTREET LIKE 'lead' OR BSTREET LIKE 'lead')";
 //$sql2 = "SELECT year as title, count(*) as accidents FROM uhaRecords WHERE (ASTREET LIKE 'Coal' OR BSTREET LIKE 'Coal') OR (ASTREET LIKE 'lead' OR BSTREET LIKE 'lead') GROUP BY year";
 
-$sql1 = "SELECT GIS_LAT AS lat, GIS_LONG AS lng,SUM(CASE WHEN (year='2010') THEN 1 ELSE 0 END) AS count2010, SUM(CASE WHEN (year='2011') THEN 1 ELSE 0 END) AS count2011, SUM(CASE WHEN (year='2012') THEN 1 ELSE 0 END) AS count2012, SUM(CASE WHEN (year='2013') THEN 1 ELSE 0 END) AS count2013 FROM uhaRecords GROUP BY GIS_LAT, GIS_LONG";
+$sql1 = "SELECT year, COUNT(*) as accidentCount, GIS_LAT AS lat, GIS_LONG AS lng FROM uhaRecords GROUP BY YEAR, GIS_LAT, GIS_LONG";
 //$sql2 = "SELECT year as title, count(*) as accidents FROM uhaRecords WHERE CITY = 'Albuquerque' GROUP BY year";
 
 $stmt1 = $pdo->query($sql1);
