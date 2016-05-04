@@ -58,23 +58,13 @@
 
             var map = new gm.Map(document.getElementById('map_canvas'), {
                mapTypeId: gm.MapTypeId.ROADMAP,
-               center: new gm.LatLng(35.104874, -106.627808), zoom: 10,  // whatevs: fitBounds will override
-               scrollwheel: false
+               center: new gm.LatLng(35.104874, -106.627808), zoom: 10
             });
 
             var iw = new gm.InfoWindow();
 
             var oms = new OverlappingMarkerSpiderfier(map,
                {markersWontMove: true, markersWontHide: true});
-
-            var usualColor = 'eebb22';
-
-            var spiderfiedColor = 'eebb22';
-
-            var iconWithColor = function(color) {
-               return 'http://chart.googleapis.com/chart?chst=d_map_xpin_letter&chld=pin|+|' +
-                  color + '|000000|ffff00';
-            };
 
             var shadow = new gm.MarkerImage(
                'https://www.google.com/intl/en_ALL/mapfiles/shadow50.png',
@@ -88,39 +78,23 @@
                iw.open(map, marker);
             });
 
-            oms.addListener('spiderfy', function(markers) {
-               for(var i = 0; i < markers.length; i++) {
-                  markers[i].setIcon(iconWithColor(spiderfiedColor));
-                  markers[i].setShadow(null);
-               }
-
-               iw.close();
-            });
-
-            oms.addListener('unspiderfy', function(markers) {
-               for(var i = 0; i < markers.length; i++) {
-                  markers[i].setIcon(iconWithColor(usualColor));
-                  markers[i].setShadow(shadow);
-               }
-            });
-
             $.getJSON("php/locations.json", function(json1) {
                $.each(json1, function(key, data) {
                   var loc = new gm.LatLng(data.lat, data.lng);
 
-                  var iconImage = "";
+                  var iconImage;
 
                   switch (data.year) {
-                     case '2010':
-                        iconImage = 'img/red.png';
-                        break;
-                     case '2011':
-                        iconImage = 'img/blue.png';
+                     case '2013':
+                        iconImage = 'img/purple.png';
                         break;
                      case '2012':
+                        iconImage = 'img/blue.png';
+                        break;
+                     case '2011':
                         iconImage = 'img/yellow.png';
                         break;
-                     case '2013':
+                     case '2010':
                         iconImage = 'img/green.png';
                         break;
                   }
@@ -129,9 +103,10 @@
                      position: loc,
                      title: data.year,
                      map: map,
-                     icon: iconImage,
                      shadow: shadow
                   });
+
+                  marker.setIcon(iconImage);
 
                   marker.desc = '<div id="content">' +
                      '<h1>Accident Data</h1>' +
