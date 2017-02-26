@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS crash;
+
 CREATE TABLE crash (
 	crashId              INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	crashCityId          INT UNSIGNED,
