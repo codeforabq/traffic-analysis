@@ -110,6 +110,21 @@ When looking at specific intersections, it becomes clear that that 2011-2013 als
                zoom: 10
             });
 
+				var rectangle = new google.maps.Rectangle({
+					strokeColor: '#FF0000',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: '#FF0000',
+					fillOpacity: 0.35,
+					map: map,
+					bounds: {
+						north: 35.077932509660045,
+						south: 35.076886663081055,
+						east: -106.62140814590435,
+						west: -106.62261612319946
+					}
+				});
+
             $.getJSON("php/locations.json", function(json1) {
                $.each(json1, function(key, data) {
                   if (data.year === '2010') {
