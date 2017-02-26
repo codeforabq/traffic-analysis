@@ -50,8 +50,8 @@
    <body>
       <div>
         The University heights area is bound by: <br/>
-        north-east corner: 35.081171328253525, -106.61331860351561<br/>
-        south-west corner: 35.07378816436824, -106.62242300415039<br/>
+        north-east corner: 35.081011, -106.613277<br/>
+        south-west corner: 35.073688, -106.622083<br/>
         <i>It would be cool to include a map here.</i>
 <pre>
 mysql> select YEAR, count(*) from uhaRecords WHERE (GIS_LAT >= 35.07378816436824) and (GIS_LAT <= 35.081171328253525) and (GIS_LONG <= -106.61331860351561) and (GIS_LONG >= -106.62242300415039) group by year;
@@ -91,6 +91,7 @@ When looking at specific intersections, it becomes clear that that 2011-2013 als
          <button onclick="getPoints(this)">2012</button>
          <button onclick="getPoints(this)">2013</button>
          <button onclick="getPoints(this)">All</button>
+         <button onclick="getPoints(this)">Reset</button>
       </div>
       <div id="map_canvas"></div>
       <script>
@@ -106,22 +107,22 @@ When looking at specific intersections, it becomes clear that that 2011-2013 als
 
             var map = new gm.Map(document.getElementById('map_canvas'), {
                mapTypeId: gm.MapTypeId.ROADMAP,
-               center: new gm.LatLng(35.104874, -106.627808),
-               zoom: 10
+               center: new gm.LatLng(35.077349, -106.617071),
+               zoom: 18
             });
 
 				var rectangle = new google.maps.Rectangle({
-					strokeColor: '#FF0000',
-					strokeOpacity: 0.8,
+					strokeColor: 'blue',
+					strokeOpacity: 0.5,
 					strokeWeight: 2,
-					fillColor: '#FF0000',
-					fillOpacity: 0.35,
+					fillColor: 'blue',
+					fillOpacity: 0.2,
 					map: map,
 					bounds: {
-						north: 35.077932509660045,
-						south: 35.076886663081055,
-						east: -106.62140814590435,
-						west: -106.62261612319946
+						north: 35.081011,
+						south: 35.073688,
+						east: -106.613277,
+						west: -106.622083
 					}
 				});
 
@@ -175,6 +176,8 @@ When looking at specific intersections, it becomes clear that that 2011-2013 als
                   case 'All':
                      heatmap.setData(allData);
                      break;
+                  case 'Reset':
+                  	heatmap.setData([]);
                }
          }
 
