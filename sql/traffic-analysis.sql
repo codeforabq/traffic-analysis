@@ -7,5 +7,6 @@ CREATE TABLE crash (
 	crashGeometry        POINT                       NOT NULL,
 	crashInjured         INT UNSIGNED,
 	crashKilled          INT UNSIGNED,
-	crashVehicles        INT UNSIGNED
+	crashVehicles        INT UNSIGNED,
+	PRIMARY KEY (crashId)
 );
