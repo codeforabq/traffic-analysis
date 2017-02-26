@@ -32,7 +32,6 @@
          }
 
          #floating-panel {
-            position: absolute;
             top: 10px;
             left: 25%;
             z-index: 5;
@@ -49,7 +48,43 @@
       <script src="//code.jquery.com/jquery-latest.min.js"></script>
    </head>
    <body>
-      <div>This is where Brian will type up his analysis. </div>
+      <div>
+        The University heights area is bound by: <br/>
+        north-east corner: 35.081171328253525, -106.61331860351561<br/>
+        south-west corner: 35.07378816436824, -106.62242300415039<br/>
+        <i>It would be cool to include a map here.</i>
+<pre>
+mysql> select YEAR, count(*) from uhaRecords WHERE (GIS_LAT >= 35.07378816436824) and (GIS_LAT <= 35.081171328253525) and (GIS_LONG <= -106.61331860351561) and (GIS_LONG >= -106.62242300415039) group by year;
++------+----------+
+| YEAR | count(*) |
++------+----------+
+| 2011 |      187 |
+| 2012 |      173 |
+| 2013 |      157 |
++------+----------+
+3 rows in set (0.00 sec)
+
+mysql>
+</pre>
+This doesn't look so bad. However, we also have data from 2010....?
+<pre>
+mysql> select YEAR, count(*) from uhaRecords group by year;
++------+----------+
+| YEAR | count(*) |
++------+----------+
+| 2010 |    15448 |
+| 2011 |    16943 |
+| 2012 |    15532 |
+| 2013 |    16006 |
++------+----------+
+4 rows in set (0.03 sec)
+mysql> 
+</pre>
+
+<b>PROBLEM 1</b> - What happened to 2010 for our neighborhood?<br/>
+<br/>
+When looking at specific intersections, it becomes clear that that 2011-2013 also have problems. Let's consider one particularly busy intersection, Central and Yale. 
+      </div>
       <div id="floating-panel">
          <button onclick='getPoints(this)'>2010</button>
          <button onclick="getPoints(this)">2011</button>
