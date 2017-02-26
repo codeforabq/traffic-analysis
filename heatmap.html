@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-      <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>
       <title>Heatmap</title>
       <style>
          html {
@@ -18,8 +18,7 @@
          }
 
          #map_canvas {
-            height: auto;
-            position: absolute;
+            height: 600px;
             bottom: 0;
             left: 0;
             right: 0;
@@ -50,6 +49,7 @@
       <script src="//code.jquery.com/jquery-latest.min.js"></script>
    </head>
    <body>
+      <div>This is where Brian will type up his analysis. </div>
       <div id="floating-panel">
          <button onclick='getPoints(this)'>2010</button>
          <button onclick="getPoints(this)">2011</button>
@@ -129,6 +129,7 @@
          }
 
       </script>
+      This is for text after the map. 
       <script async defer
               src="//maps.googleapis.com/maps/api/js?v=3&libraries=visualization&callback=initMap">
       </script>
