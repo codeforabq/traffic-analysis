@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS crash;
+
 CREATE TABLE crash (
 	crashId              INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	crashCityId          INT UNSIGNED,
@@ -7,5 +9,6 @@ CREATE TABLE crash (
 	crashGeometry        POINT                       NOT NULL,
 	crashInjured         INT UNSIGNED,
 	crashKilled          INT UNSIGNED,
-	crashVehicles        INT UNSIGNED
+	crashVehicles        INT UNSIGNED,
+	PRIMARY KEY (crashId)
 );
