@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+      <title>Heatmap</title>
+      <style>
+         html {
+            height: auto;
+         }
+
+         body {
+            height: auto;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            font-size: 0.9em;
+         }
+
+         #map_canvas {
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+         }
+
+         @media print {
+            #map_canvas {
+               height: 950px;
+            }
+         }
+
+         #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+         }
+
+      </style>
+      <script src="//code.jquery.com/jquery-latest.min.js"></script>
+   </head>
+   <body>
+      <div id="floating-panel">
+         <button onclick='getPoints(this)'>2010</button>
+         <button onclick="getPoints(this)">2011</button>
+         <button onclick="getPoints(this)">2012</button>
+         <button onclick="getPoints(this)">2013</button>
+         <button onclick="getPoints(this)">All</button>
+      </div>
+      <div id="map_canvas"></div>
+      <script>
+         var heatmap;
+         var year2010 = [];
+         var year2011 = [];
+         var year2012 = [];
+         var year2013 = [];
+         var allData = [];
+
+         function initMap() {
+            var gm = google.maps;
+
+            var map = new gm.Map(document.getElementById('map_canvas'), {
+               mapTypeId: gm.MapTypeId.ROADMAP,
+               center: new gm.LatLng(35.104874, -106.627808),
+               zoom: 10
+            });
+
+            $.getJSON("php/locations.json", function(json1) {
+               $.each(json1, function(key, data) {
+                  if (data.year === '2010') {
+                     allData.push({location: new gm.LatLng(data.lng, data.lat), weight: data.accidentCount});
+                  } else {
+                     allData.push({location: new gm.LatLng(data.lat, data.lng), weight: data.accidentCount});
+                  }
+
+                  switch (data.year) {
+                     case '2010':
+                        year2010.push({location: new gm.LatLng(data.lng, data.lat), weight: data.accidentCount});
+                        break;
+                     case '2011':
+                        year2011.push({location: new gm.LatLng(data.lat, data.lng), weight: data.accidentCount});
+                        break;
+                     case '2012':
+                        year2012.push({location: new gm.LatLng(data.lat, data.lng), weight: data.accidentCount});
+                        break;
+                     case '2013':
+                        year2013.push({location: new gm.LatLng(data.lat, data.lng), weight: data.accidentCount});
+                        break;
+                  }
+               });
+            });
+
+            heatmap = new gm.visualization.HeatmapLayer({
+               dissipating: true,
+               maxIntensity: 10,
+               radius: 20
+            });
+            heatmap.setMap(map);
+         }
+
+         function getPoints(obj) {
+               switch ($(obj).text()) {
+                  case '2010':
+                     heatmap.setData(year2010);
+                     break;
+                  case '2011':
+                     heatmap.setData(year2011);
+                     break;
+                  case '2012':
+                     heatmap.setData(year2012);
+                     break;
+                  case '2013':
+                     heatmap.setData(year2013);
+                     break;
+                  case 'All':
+                     heatmap.setData(allData);
+                     break;
+               }
+         }
+
+      </script>
+      <script async defer
+              src="//maps.googleapis.com/maps/api/js?v=3&libraries=visualization&callback=initMap">
+      </script>
+   </body>
+</html>
