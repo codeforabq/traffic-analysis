@@ -108,7 +108,7 @@ When looking at specific intersections, it becomes clear that that 2011-2013 als
             var map = new gm.Map(document.getElementById('map_canvas'), {
                mapTypeId: gm.MapTypeId.ROADMAP,
                center: new gm.LatLng(35.077349, -106.617071),
-               zoom: 18
+               zoom: 16
             });
 
 				var rectangle = new google.maps.Rectangle({
@@ -151,33 +151,33 @@ When looking at specific intersections, it becomes clear that that 2011-2013 als
                });
             });
 
-            heatmap = new gm.visualization.HeatmapLayer({
+            index = new gm.visualization.HeatmapLayer({
                dissipating: true,
                maxIntensity: 10,
                radius: 20
             });
-            heatmap.setMap(map);
+            index.setMap(map);
          }
 
          function getPoints(obj) {
                switch ($(obj).text()) {
                   case '2010':
-                     heatmap.setData(year2010);
+                     index.setData(year2010);
                      break;
                   case '2011':
-                     heatmap.setData(year2011);
+                     index.setData(year2011);
                      break;
                   case '2012':
-                     heatmap.setData(year2012);
+                     index.setData(year2012);
                      break;
                   case '2013':
-                     heatmap.setData(year2013);
+                     index.setData(year2013);
                      break;
                   case 'All':
-                     heatmap.setData(allData);
+                     index.setData(allData);
                      break;
                   case 'Reset':
-                  	heatmap.setData([]);
+                  	index.setData([]);
                }
          }
 
