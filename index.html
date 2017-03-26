@@ -52,7 +52,6 @@
         The University heights area is bound by: <br/>
         north-east corner: 35.081011, -106.613277<br/>
         south-west corner: 35.073688, -106.622083<br/>
-        <i>It would be cool to include a map here.</i>
 <pre>
 mysql> select YEAR, count(*) from uhaRecords WHERE (GIS_LAT >= 35.07378816436824) and (GIS_LAT <= 35.081171328253525) and (GIS_LONG <= -106.61331860351561) and (GIS_LONG >= -106.62242300415039) group by year;
 +------+----------+
@@ -82,9 +81,33 @@ mysql>
 </pre>
 
 <b>PROBLEM 1</b> - What happened to 2010 for our neighborhood?<br/>
+<b>ANSWER 1</b> - The 2010 data had all latitudes and longitudes transposed. We corrected the error in commit #81ea2d053e2.
 <br/>
-When looking at specific intersections, it becomes clear that that 2011-2013 also have problems. Let's consider one particularly busy intersection, Central and Yale. 
-      </div>
+<br/>
+After rerunning the population routines, and then rerunning our query, we have better looking results:<br/>
+<pre>
+mysql> select YEAR, count(*) from uhaRecords WHERE (GIS_LAT >= 35.07378816436824) and (GIS_LAT <= 35.081171328253525) and (GIS_LONG <= -106.61331860351561) and (GIS_LONG >= -106.62242300415039) group by year;
++------+----------+
+| YEAR | count(*) |
++------+----------+
+| 2010 |      156 |
+| 2011 |      187 |
+| 2012 |      173 |
+| 2013 |      157 |
++------+----------+
+4 rows in set (0.03 sec)
+
+mysql> 
+</pre>
+
+When looking at specific intersections, it becomes clear that that 2010-2013 also have problems. Let's consider one particularly busy intersection, Central and Yale. 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</div>
+      <center>Here's a heatmap from the origional dataset</center>
       <div id="floating-panel">
          <button onclick='getPoints(this)'>2010</button>
          <button onclick="getPoints(this)">2011</button>
