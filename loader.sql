@@ -1,3 +1,4 @@
+source sql/datasources.sql;
 source uhaStructureCreation.sql;
 
 LOAD DATA LOCAL INFILE 'BernCo_Traffic_Accident_Data_2010_to_2013.csv'
