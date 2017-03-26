@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS `uha`.`uhaRecords`;
-CREATE TABLE `uhaRecords` (
+CREATE TABLE `uhaRecords`(
+  `SOURCEID` int(11) NOT NULL,
   `OBJECTID` int(11) DEFAULT NULL,
   `REPORT` int(11) DEFAULT NULL,
   `DATE` text,
@@ -44,5 +45,8 @@ CREATE TABLE `uhaRecords` (
   `UTM_X` double DEFAULT NULL,
   `UTM_Y` double DEFAULT NULL,
   `GIS_LAT` double DEFAULT NULL,
-  `GIS_LONG` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `GIS_LONG` double DEFAULT NULL,
+  FOREIGN KEY (SOURCEID) REFERENCES dataSources(ID)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
