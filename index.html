@@ -101,6 +101,27 @@ mysql>
 </pre>
 
 When looking at specific intersections, it becomes clear that that 2010-2013 also have problems. Let's consider one particularly busy intersection, Central and Yale. 
+north-east corner: 35.081172, -106.621928<br/>
+south-west corner: 35.080886, -106.622207<br/>
+<br/>
+<pre>
+myql> select YEAR, count(*) from uhaRecords WHERE (GIS_LAT >= 35.080886) and (GIS_LAT <= 35.081172) and (GIS_LONG <= -106.621928) and (GIS_LONG >= -106.622207) group by year;
++------+----------+
+| YEAR | count(*) |
++------+----------+
+| 2010 |       32 | # 20.51%
+| 2011 |       59 | # 37.82%
+| 2012 |       36 | # 23.07%
+| 2013 |       29 | # 18.58%
++------+----------+
+4 rows in set (0.03 sec)
+
+mysql> 
+I'm actually not sure if this is a problem. These variations seem OK.
+</pre>
+
+
+
 <br/>
 <br/>
 <br/>
