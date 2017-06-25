@@ -1,3 +1,5 @@
+SOURCE uhaRecordsStructure.sql;
+
 DROP TABLE IF EXISTS `dataSources`;
 CREATE TABLE `dataSources` (
 `ID` INT (11),
