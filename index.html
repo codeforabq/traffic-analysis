@@ -145,7 +145,17 @@ I'm actually not sure if this is a problem. These variations seem OK.
 			<div>
 				<input type="checkbox" id="dataset" >	primary-secondary-coal.csv
 			</div>
-      </div>
+			<script>
+				<!-- here Sabastian was trying to link the "checkboxes" to the buttons - not too sure what i was doing -->"
+					
+			function showInput() {
+			var test=null;
+			var obj=`.getElementById("fromUNM");
+			obj?test='t':test='f';
+			var message_entered = ">RSP=" +test+  document.getElementById("IMEI").value + ";" + document.getElementById("Command").value + "<";
+			document.getElementById('display').innerHTML = message_entered;
+			</script>
+		</div>
       <div id="map_canvas"></div>
       <script>
          var heatmap;
