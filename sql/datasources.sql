@@ -6,3 +6,7 @@ CREATE TABLE `dataSources` (
 );
 
 INSERT INTO dataSources VALUES(1, "BernCo_Traffic_Accident_Data_2010_to_2013.csv");
+INSERT INTO dataSources VALUES(2, "primary-secondary-coal.csv");
+INSERT INTO dataSources VALUES(3, "1994-2014.Primary.Secondary.Lead.csv");
+INSERT INTO dataSources VALUES(4, "1997-2014.Lead.Coal.Updated.csv");
+INSERT INTO dataSources VALUES(5, "DR782_Albuquerque-2012-2015.csv");
