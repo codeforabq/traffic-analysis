@@ -23,7 +23,6 @@ DROP TABLE IF EXISTS `uhaRecords`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `uhaRecords` (
-  `SOURCEID` int(11) NOT NULL,
   `OBJECTID` int(11) DEFAULT NULL,
   `REPORT` int(11) DEFAULT NULL,
   `DATE` text,
@@ -69,6 +68,7 @@ CREATE TABLE `uhaRecords` (
   `UTM_Y` double DEFAULT NULL,
   `GIS_LAT` double DEFAULT NULL,
   `GIS_LONG` double DEFAULT NULL,
+  `SOURCEID` int(11) NOT NULL,
   KEY `SOURCEID` (`SOURCEID`),
   CONSTRAINT `uhaRecords_ibfk_1` FOREIGN KEY (`SOURCEID`) REFERENCES `dataSources` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
